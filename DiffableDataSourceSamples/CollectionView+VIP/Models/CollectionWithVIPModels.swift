@@ -9,9 +9,9 @@ import UIKit
 
 enum CollectionWithVIP {
     // MARK: Use cases
-    enum Section {
-        case favoritePlaces([any DefaultCollectionViewModelProtocol])
-        case memories([any DefaultCollectionViewModelProtocol])
+    enum Section: Int {
+        case favoritePlaces
+        case memories
     }
     
     enum ViewDidLoad {
@@ -20,6 +20,7 @@ enum CollectionWithVIP {
         struct Response {
         }
         struct ViewModel {
+            
         }
     }
     
@@ -27,8 +28,11 @@ enum CollectionWithVIP {
         struct Request {
         }
         struct Response {
+            let memories: [MemoryItem]
+            let famousPlace: [FamousPlace]
         }
         struct ViewModel {
+            let cellViewModel: [CollectionWithVIP.Section: [any DefaultCollectionViewModelProtocol]]
         }
     }
 }

@@ -31,7 +31,16 @@ private extension CollectionWithVIPInteractor {}
 
 // MARK: - Business Logics
 extension CollectionWithVIPInteractor: CollectionWithVIPBusinessLogic {
-    func viewDidLoad(request: CollectionWithVIP.ViewDidLoad.Request) {
-        
+    func viewDidLoad(
+        request: CollectionWithVIP.ViewDidLoad.Request
+    ) {
+        Task {
+            await presenter?.presentCollectionData(
+                response: CollectionWithVIP.ShowCollectionData.Response(
+                    memories: MemoryItem.list,
+                    famousPlace: FamousPlace.list
+                )
+            )
+        }
     }
 }

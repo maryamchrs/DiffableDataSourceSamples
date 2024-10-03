@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewController = CollectionViewWithMoreSectionsViewController()
+        let viewController = CollectionWithVIPDependencyContainer().makeCollectionWithVIPViewController()//CollectionViewWithMoreSectionsViewController()
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }
