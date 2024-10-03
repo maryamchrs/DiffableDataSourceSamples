@@ -57,7 +57,7 @@ class CollectionViewWithMoreSectionsViewController: UIViewController {
 extension CollectionViewWithMoreSectionsViewController {
     func configureCollectionView() {
         collectionView.registerNib(MemoryCollectionViewCell.self)
-        collectionView.registerNib(DefaultCollectionViewCell.self)
+        collectionView.registerNib(LandscapeCollectionViewCell.self)
         collectionView.delegate = self
     }
     
@@ -101,12 +101,13 @@ extension CollectionViewWithMoreSectionsViewController {
             case .memories:
                 let memory = self.model.memories.first(where: { $0.id == identifier })!
                 let cell: MemoryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.setViewModel(MemoryCollectionViewModel(dataModel: memory))
+                let delegate: MemoryCollectionViewCellDelegate = self
+                cell.setViewModel(MemoryCollectionViewModel(model: memory, delegate: delegate))
                 return cell
             case .favoritePlaces:
                 let place = self.model.famousPlace.first(where: { $0.id == identifier })!
-                let cell: DefaultCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-                cell.setViewModel(DefaultCollectionViewModel(dataModel: place))
+                let cell: LandscapeCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.configCell(LandscapeCollectionViewModel(model: place))
                 return cell
             }
         }
@@ -131,5 +132,12 @@ extension CollectionViewWithMoreSectionsViewController: UICollectionViewDelegate
         guard let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
+    }
+}
+
+// MARK: - MemoryCollectionViewCellDelegate
+extension CollectionViewWithMoreSectionsViewController: MemoryCollectionViewCellDelegate {
+    func favoriteButtonTapped(dataModel: MemoryItem) {
+        print("favoriteButtonTapped")
     }
 }

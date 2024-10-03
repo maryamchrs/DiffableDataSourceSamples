@@ -7,13 +7,16 @@
 
 import Foundation
 
-final class MemoryCollectionViewModel {
-    
-    var dataModel: MemoryItem!
+final class MemoryCollectionViewModel: DefaultCollectionViewModelProtocol {
+    var model: MemoryItem
     weak var delegate: MemoryCollectionViewCellDelegate?
     
-    init(dataModel: MemoryItem, delegate: MemoryCollectionViewCellDelegate? = nil) {
-        self.dataModel = dataModel
-        self.delegate = delegate
+    init(model: MemoryItem, delegate: AnyObject? = nil) {
+        self.model = model
+        self.delegate = delegate as? MemoryCollectionViewCellDelegate
+    }
+    
+    func getDataModel() -> MemoryItem {
+        model
     }
 }

@@ -51,8 +51,17 @@ private extension MemoryCollectionViewCell {
     }
     
     func updateUIBasedOnDataModel() {
-        guard let viewModel, let dataModel = viewModel.dataModel else { return }
+        guard let viewModel else { return }
+        let dataModel = viewModel.getDataModel()
         imageIcon.image = UIImage(named: dataModel.imageName)
         descriptionLabel.text = dataModel.title
+    }
+}
+
+//MARK: - Actions
+private extension MemoryCollectionViewCell {
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        guard let dataModel = viewModel?.getDataModel() else { return }
+        viewModel?.delegate?.favoriteButtonTapped(dataModel: dataModel)
     }
 }

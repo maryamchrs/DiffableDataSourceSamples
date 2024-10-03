@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FamousPlace: Identifiable, Hashable, DefaultCollectionModelProtocol {
+struct FamousPlace: Identifiable, Hashable {
     
     var id: UUID = UUID()
     var title: String

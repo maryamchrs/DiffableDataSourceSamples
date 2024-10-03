@@ -87,7 +87,8 @@ extension CollectionWithOneSectionViewController {
             guard let self else { return UICollectionViewCell() }
             let memory = self.memories.first(where: { $0.id == identifier })!
             let cell: MemoryCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.setViewModel(MemoryCollectionViewModel.init(dataModel: memory))
+            let delegate: MemoryCollectionViewCellDelegate? = self
+            cell.setViewModel(MemoryCollectionViewModel.init(model: memory, delegate: delegate))
             return cell
         }
     }
@@ -107,5 +108,11 @@ extension CollectionWithOneSectionViewController: UICollectionViewDelegate {
         guard let item = dataSource.itemIdentifier(for: indexPath) else {
             return
         }
+    }
+}
+
+extension CollectionWithOneSectionViewController: MemoryCollectionViewCellDelegate {
+    func favoriteButtonTapped(dataModel: MemoryItem) {
+        print("favoriteButtonTapped")
     }
 }
