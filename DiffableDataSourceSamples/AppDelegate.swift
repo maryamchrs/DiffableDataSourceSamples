@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  DiffableDataSourceSamples
 //
-//  Created by Maryam Chrs on 03/10/2024.
+//  Created by Maryam Chaharsooghi on 03/10/2024.
 //
 
 import UIKit
