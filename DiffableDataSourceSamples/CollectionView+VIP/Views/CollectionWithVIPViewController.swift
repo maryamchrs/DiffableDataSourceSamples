@@ -135,8 +135,7 @@ private extension CollectionWithVIPViewController {
     
     func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = NSDiffableDataSourceSnapshot<CollectionWithVIP.Section, UUID>()
-        snapshot.appendSections([CollectionWithVIP.Section.favoritePlaces, CollectionWithVIP.Section.memories])
-        
+        snapshot.appendSections(CollectionWithVIP.Section.allCases)
         guard let memoriesViewModel = self.cellViewModel[.memories] as? [MemoryCollectionViewModel] else { return }
         guard let placesViewModel = self.cellViewModel[.favoritePlaces] as? [LandscapeCollectionViewModel] else { return }
         

@@ -9,7 +9,7 @@ import UIKit
 
 enum CollectionWithVIP {
     // MARK: Use cases
-    enum Section: Int {
+    enum Section: Int, CaseIterable {
         case favoritePlaces
         case memories
     }
